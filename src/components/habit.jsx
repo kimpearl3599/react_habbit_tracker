@@ -1,6 +1,14 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
-class Habit extends Component {
+class Habit extends PureComponent {
+  //사용자에 의해 컴포넌트가 등록되었을때 자동호출 (UI기준)
+  componentDidMount() {
+    console.log(`habit: ${this.props.habit.name} mounted`);
+  }
+  // 사용자가 삭제하기 전에 자동호출 (UI기준)
+  componentWillUnmount() {
+    console.log(`habit: ${this.props.habit.name} will unmount`);
+  }
   // 보여주기만 하는 컴포넌트이기 때문에 state 필요없음
   // 콜백함수를 단순히 호출만 하는 컴포넌트
   handleIncrement = () => {
@@ -13,7 +21,7 @@ class Habit extends Component {
     this.props.onDelete(this.props.habit);
   };
   render() {
-    console.log(this.props.habit);
+    console.log("habit");
     const { name, count } = this.props.habit;
     return (
       <li className="habit">
